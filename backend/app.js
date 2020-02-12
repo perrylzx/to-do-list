@@ -4,8 +4,10 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
-import { Todo } from './Todo/models';
-import { CreateTodo } from './Todo/TodoControllers/CreateTodo';
+import { createTodo } from './controllers/todoControllers';
+import { retrieveTodo } from './controllers/todoControllers'
+import { updateTodo } from './controllers/todoControllers'
+import { deleteTodo } from './controllers/todoControllers'
 
 const app = express();
 
@@ -15,18 +17,24 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-// app.post('/create-todo', (req, res) => {
-//   Todo.create({
-//     value: req.body.value,
-//     completed: false
-//   }).then(() => {
-//     res.send('success');
-//   });
-// });
-
+// create api
 app.post('/create-todo', (req, res) => {
-  CreateTodo(req, res);
+  createTodo(req, res);
+});
+
+// retrieve api 
+app.get('/request-todo', (req, res) => {
+  retrieveTodo(req, res);
+});
+
+// update api (not working for now)
+app.post('/update-todo', (req, res) => {
+  updateTodo(req, res);
+});
+
+//delete api (not working for now)
+app.delete('/delete-todo', (req, res) => {
+  deleteTodo(req, res);
 });
 
 // catch 404 and forward to error handler
