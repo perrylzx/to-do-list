@@ -1,87 +1,13 @@
-// var createError = require('http-errors');
-import Sequelize from 'sequelize';
 import createError from 'http-errors';
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+import express from 'express';
+import path from 'path';
+import cookieParser from 'cookie-parser';
+import logger from 'morgan';
 
+import { Todo } from './Todo/models';
+import { CreateTodo } from './Todo/TodoControllers/CreateTodo';
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
-var app = express();
-
-
-/*
-* Set up sequelize
-*/
-//creat new sequelize instance with connection params
-const sequelize = new Sequelize(
-  'todo-app-database',
-  'postgres',
-  'password',
-  {
-    host: 'localhost',
-    dialect: 'postgres',
-    port: '5433',
-  }
-);
-const Todo = sequelize.define('todo', {
-  value: Sequelize.STRING,
-  completed: Sequelize.BOOLEAN
-});
-
-
-Todo.sync().then(() => {
-  console.log('synced with database');
-  return Todo.create({
-    value: 'foobar',
-    completed: false
-  });
-});
-});
-
-sequelize.authenticate().then(() => {
-  console.log('successfully connected to database');
-});
-
-//create
-app.get('/create-todo', (req, res) => {
-  Todo.create({
-    value: 'abc',
-    completed: false
-  }).then(() => {
-    res.send('get todos');
-  })
-})
-
-//retrieve
-app.post('/update-todo', (req, res) => {
-
-}).then(() => {
-  res.send('update todo');
-})
-
-//update
-app.put('/Todo/:value/Todo/:completed', (req, res) => {
-  Todo = req.params
-  Todo.save()
-}).then(() => {
-  res.send('update todo');
-})
-
-//delete
-
-app.delete('/delete-todo', (req, res) => {
-  Todo.destroy()
-}).then(() => {
-  res.send('delete todo');
-})
-
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
+const app = express();
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -89,8 +15,19 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+// app.post('/create-todo', (req, res) => {
+//   Todo.create({
+//     value: req.body.value,
+//     completed: false
+//   }).then(() => {
+//     res.send('success');
+//   });
+// });
+
+app.post('/create-todo', (req, res) => {
+  CreateTodo(req, res);
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -105,7 +42,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
 });
 
-module.exports = app;
+
+export default module.exports = app;
