@@ -32,7 +32,7 @@ app.post('/update-todo', (req, res) => {
   updateTodo(req, res);
 });
 
-//delete api (not working for now)
+//delete api
 app.delete('/delete-todo', (req, res) => {
   deleteTodo(req, res);
 });
