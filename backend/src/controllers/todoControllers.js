@@ -4,7 +4,6 @@ import { Todo } from '../db/models'
 //create api
 export const createTodo = (req, res) => {
   console.log('asd');
-  // stores task provided by user in variable
   const value = req.body.value;
   return Todo.create({
     value: value,

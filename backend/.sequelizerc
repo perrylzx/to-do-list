@@ -1,8 +1,8 @@
 const path = require('path');
 
 module.exports = {
-  "config": path.resolve('./Todo/config', 'config.json'),
-  "models-path": path.resolve('./Todo/models'),
-  "seeders-path": path.resolve('./Todo/seeders'),
-  "migrations-path": path.resolve('./Todo/migrations')
+  "config": path.resolve('./src/db/config', 'config.json'),
+  "models-path": path.resolve('./src/db/models'),
+  "seeders-path": path.resolve('./src/db/seeders'),
+  "migrations-path": path.resolve('./src/db/migrations')
 };
