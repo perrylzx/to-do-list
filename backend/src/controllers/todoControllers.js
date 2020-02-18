@@ -14,18 +14,9 @@ export const createTodo = (req, res) => {
 };
 
 // retrieve row if the value you pass in the request matches with the value in the table
-export const retrieveTodo = (req, res) => {
-  const value = req.body.value;
-  Todo.findAll({
-    where: {
-      value: value
-    }
-  }).then((data) => {
-    res.send(data);
-    // console.log('success');
-  }).catch((err) => {
-    console.log(err);
-  });
+export const retrieveTodos = async (req, res) => {
+  const todos = await Todo.findAll({});
+  res.send(todos);
 };
 
 
