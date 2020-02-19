@@ -1,16 +1,16 @@
 import createError from 'http-errors';
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import express from 'express';
 import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-
-import { createTodo } from './controllers/todoControllers';
-import { retrieveTodo } from './controllers/todoControllers'
-import { updateTodo } from './controllers/todoControllers'
-import { deleteTodo } from './controllers/todoControllers'
+import cors from 'cors'
+import { createTodo, retrieveTodos, updateTodo, deleteTodo } from './controllers/todoControllers';
 
 const app = express();
 
+app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,7 +29,8 @@ app.post('/create-todo', (req, res) => {
 
 // retrieve api 
 app.get('/request-todo', (req, res) => {
-  retrieveTodo(req, res);
+  console.log('456')
+  retrieveTodos(req, res);
 });
 
 // update api (not working for now)
