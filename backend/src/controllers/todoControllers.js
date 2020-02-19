@@ -11,9 +11,17 @@ export const createTodo = (req, res) => {
   });
 };
 
+<<<<<<< HEAD
+// retrieve all rows
+=======
 // retrieve row if the value you pass in the request matches with the value in the table
+<<<<<<< HEAD
 export const retrieveTodos = async (req, res) => {
   console.log('123')
+=======
+>>>>>>> dfd7f38fcdbbabd2dec2cc7efd1f2fd755f5f390
+export const retrieveTodos = async (req, res) => {
+>>>>>>> fd408eb3792f0ee169f614b41b7f465c4f3274b5
   const todos = await Todo.findAll({});
   res.send(todos);
 };

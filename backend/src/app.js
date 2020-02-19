@@ -17,11 +17,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// test heroku
-app.get('/', (req, res) => {
-  res.send('sent');
-});
-
 // create api
 app.post('/create-todo', (req, res) => {
   createTodo(req, res);
@@ -38,7 +33,7 @@ app.post('/update-todo', (req, res) => {
   updateTodo(req, res);
 });
 
-//delete api
+//delete api                    
 app.delete('/delete-todo', (req, res) => {
   deleteTodo(req, res);
 });

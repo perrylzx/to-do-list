@@ -4,7 +4,10 @@ import Todo from './Todo'
 
 class TodoList extends React.Component {
   componentDidMount() {
+<<<<<<< HEAD
     console.log('abc')
+=======
+>>>>>>> fd408eb3792f0ee169f614b41b7f465c4f3274b5
     this.props.fetchTodo()
   }
 
