@@ -14,7 +14,6 @@ const todos = (state = initialState, action) => {
             id: action.id,
             value: action.value,
             text: action.text,
->>>>>>> fd408eb3792f0ee169f614b41b7f465c4f3274b5
             completed: false
           }
         ]
