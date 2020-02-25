@@ -1,7 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addTodo } from '../actions'
-const AddTodo = ({ dispatch }) => {
+import { createTodo } from '../actions/addTodo'
+
+const RequestAddTodo = ({ dispatch }) => {
   let input
   return (
     <div>
@@ -9,10 +10,10 @@ const AddTodo = ({ dispatch }) => {
         onSubmit={e => {
           e.preventDefault()
           if (!input.value.trim()) {
-            return
+            return;
           }
-          dispatch(addTodo(input.value))
-          input.value = ''
+          dispatch(createTodo(input.value))
+          input.value = '';
         }}
       >
         <input ref={node => (input = node)} />
@@ -21,4 +22,5 @@ const AddTodo = ({ dispatch }) => {
     </div>
   )
 }
-export default connect()(AddTodo)
+export default connect()(RequestAddTodo)
+
