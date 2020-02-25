@@ -1,14 +1,13 @@
 import { Todo } from '../db/models'
 
 //create api
-export const createTodo = (req, res) => {
+export const createTodo = async (req, res) => {
   const value = req.body.value;
-  return Todo.create({
+  const created_todo = await Todo.create({
     value: value,
     completed: false
-  }).then(() => {
-    res.send("added a task");
   });
+  res.send(created_todo);
 };
 
 export const retrieveTodos = async (req, res) => {
@@ -16,10 +15,8 @@ export const retrieveTodos = async (req, res) => {
   res.send(todos);
 };
 
-
-// update value of row if id matches with the request
-// TODO = how to request two things and then take it out and put it inside two variables. what data type is req? 
-export const updateTodo = (req, res) => {
+// update this api to fit the frontend toggletodo, for now this api is not
+export const updateTodo = async (req, res) => {
   const id = req.body.value;
   const update = req.body.value[0];
   Todo.update({

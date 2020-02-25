@@ -24,7 +24,6 @@ app.post('/create-todo', (req, res) => {
 
 // retrieve api 
 app.get('/request-todo', (req, res) => {
-  console.log('456')
   retrieveTodos(req, res);
 });
 
