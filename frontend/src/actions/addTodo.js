@@ -1,3 +1,5 @@
+const herokuUrl = 'https://powerful-fortress-54332.herokuapp.com'
+
 // action that stores your add todo input into this value key
 export const requestAddTodo = () => ({
   type: 'REQUEST_ADD_TODO',
@@ -15,7 +17,7 @@ export const createTodo = value => {
   return dispatch => {
     dispatch(requestAddTodo())
     return (
-      fetch("http://localhost:4000/create-todo", {
+      fetch(`${herokuUrl}/create-todo`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

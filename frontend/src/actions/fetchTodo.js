@@ -1,3 +1,5 @@
+const herokuUrl = 'https://powerful-fortress-54332.herokuapp.com'
+
 // informing the reducer that the request, isfetching to true
 export const requestTodos = () => ({
   type: 'REQUEST_TODOS',
@@ -12,7 +14,7 @@ export const receiveTodos = (todos) => ({
 export const fetchTodo = () => dispatch => {
   console.log('success')
   dispatch(requestTodos());
-  return fetch('http://localhost:4000/request-todo')
+  return fetch(`${herokuUrl}/request-todo`)
     .then(response => {
       return response.json();
     })

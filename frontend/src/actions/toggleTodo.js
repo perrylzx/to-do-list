@@ -1,20 +1,23 @@
+const herokuUrl = 'https://powerful-fortress-54332.herokuapp.com'
+
 export const requestToggleTodo = id => ({
   type: 'REQUEST_TOGGLE_TODO',
   id
 })
 
-export const receiveToggleTodo = id => ({
+// TODO = verify if this action works
+export const receiveToggleTodo = updatedTodo => ({
   type: 'RECEIVE_TOGGLE_TODO',
-  id
+  updatedTodo
 })
 
 
-// TODO = verify if this actions works
+// TODO = verify if this action creator works
 export const toggleTodo = id => {
   return dispatch => {
     dispatch(requestToggleTodo())
     return (
-      fetch("http://localhost:4000/update-todo", {
+      fetch(`${herokuUrl}/update-todo`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"
@@ -24,8 +27,8 @@ export const toggleTodo = id => {
         .then(response => {
           return response.json();
         })
-        .then(updated_todo => {
-          return dispatch(receiveToggleTodo(updated_todo))
+        .then(updatedTodo => {
+          return dispatch(receiveToggleTodo(updatedTodo))
         })
     )
   }
