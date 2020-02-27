@@ -15,21 +15,14 @@ export const retrieveTodos = async (req, res) => {
   res.send(todos);
 };
 
-// update this api to fit the frontend toggletodo, for now this api is not
+// update this api to fit the frontend toggletodo, for now this api is not working as intended
 export const updateTodo = async (req, res) => {
-  const id = req.body.value;
-  const update = req.body.value[0];
-  Todo.update({
-    value: update
-  }, {
-    where: {
-      id: id
-    }
-  }).then(() => {
-    console.log('Updated');
-  }).catch((e) => {
-    console.log("Error" + e);
-  });
+  const id = req.body.id;
+  const todo = await Todo.findByPk(id)
+  await todo.update({
+    completed: !todo.completed
+  })
+  res.send(todo)
 };
 
 //delete row where id in req matches

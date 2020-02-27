@@ -28,7 +28,7 @@ app.get('/request-todo', (req, res) => {
 });
 
 // update api (not working for now)
-app.post('/update-todo', (req, res) => {
+app.put('/update-todo', (req, res) => {
   updateTodo(req, res);
 });
 
